@@ -4,6 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\FlightBookingController;
+use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\FlightCustomerUserController;
+use App\Http\Controllers\Admin\SystemReportController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,27 +24,20 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-
-// Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-//  Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-//     Route::resource('bookings', FlightBookingController::class);
-// })->middleware('admin');
-
-
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 
-    // Flight Booking management routes (separate)
-    Route::get('bookings', [FlightBookingController::class, 'index'])->name('admin.bookings.index');
-    Route::get('bookings/create', [FlightBookingController::class, 'create'])->name('admin.bookings.create');
-    Route::post('bookings', [FlightBookingController::class, 'store'])->name('admin.bookings.store');
-    Route::get('bookings/{booking}/edit', [FlightBookingController::class, 'edit'])->name('admin.bookings.edit');
-    Route::put('bookings/{booking}', [FlightBookingController::class, 'update'])->name('admin.bookings.update');
-    Route::delete('bookings/{booking}', [FlightBookingController::class, 'destroy'])->name('admin.bookings.destroy');
-
-    // Optional: show booking details route
+    // Flight Booking management routes
+    Route::get('bookings', [FlightBookingController::class, 'index'])->name('bookings.index');
+    Route::get('bookings/create', [FlightBookingController::class, 'create'])->name('bookings.create');
+    Route::post('bookings', [FlightBookingController::class, 'store'])->name('bookings.store');
+    Route::get('bookings/{booking}/edit', [FlightBookingController::class, 'edit'])->name('bookings.edit');
+    Route::put('bookings/{booking}', [FlightBookingController::class, 'update'])->name('bookings.update');
+    Route::delete('bookings/{booking}', [FlightBookingController::class, 'destroy'])->name('bookings.destroy');
     Route::get('bookings/{booking}', [FlightBookingController::class, 'show'])->name('bookings.show');
-})->middleware('admin');
+    Route::resource('flight_customer_users', FlightCustomerUserController::class);
+    Route::get('reports', [SystemReportController::class, 'index'])->name('reports.index');
+});
+
 
 require __DIR__.'/auth.php';

@@ -5,7 +5,7 @@
 @section('content')
     <h1>Edit Flight Booking</h1>
 
-    <a href="{{ route('bookings.index') }}" class="btn btn-secondary mb-3">Back to list</a>
+    <a href="{{ route('admin.bookings.index') }}" class="btn btn-secondary mb-3">Back to list</a>
 
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -17,7 +17,7 @@
       </div>
     @endif
 
-    <form action="{{ route('bookings.update', $booking) }}" method="POST" novalidate>
+    <form action="{{ route('admin.bookings.update', $booking) }}" method="POST" novalidate>
       @csrf
       @method('PUT')
 

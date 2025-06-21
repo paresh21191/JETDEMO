@@ -5,7 +5,7 @@
 @section('content')
     <h1>Create Flight Booking</h1>
 
-    <a href="{{ route('bookings.index') }}" class="btn btn-secondary mb-3">Back to list</a>
+    <a href="{{ route('admin.bookings.index') }}" class="btn btn-secondary mb-3">Back to list</a>
 
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -18,7 +18,7 @@
     @endif
 
     
-    <form action="{{ route('bookings.store') }}" method="post"  novalidate>
+    <form action="{{ route('admin.bookings.store') }}" method="post"  novalidate>
       @csrf
       <div class="mb-3">
         <label for="passenger_name" class="form-label">Passenger Name</label>

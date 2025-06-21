@@ -9,7 +9,7 @@
       <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('bookings.create') }}" class="btn btn-primary mb-3">Add New Booking</a>
+    <a href="{{ route('admin.bookings.create') }}" class="btn btn-primary mb-3">Add New Booking</a>
 
     @if($bookings->count())
       <div class="table-responsive">
@@ -39,9 +39,9 @@
                 <td>{{ $booking->origin }}</td>
                 <td>{{ $booking->destination }}</td>
                 <td>
-                  <a href="{{ route('bookings.edit', $booking) }}" class="btn btn-sm btn-warning">Edit</a>
+                  <a href="{{ route('admin.bookings.edit', $booking) }}" class="btn btn-sm btn-warning">Edit</a>
 
-                  <form action="{{ route('bookings.destroy', $booking) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure want to delete this booking?');">
+                  <form action="{{ route('admin.bookings.destroy', $booking) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure want to delete this booking?');">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-sm btn-danger" type="submit">Delete</button>

@@ -93,10 +93,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('bookings.index') }}" class="nav-link {{ request()->routeIs('bookings.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.bookings.index') }}" class="nav-link {{ request()->routeIs('admin.bookings.index') ? 'active' : '' }}">
                         Bookings
                     </a>
                 </li>
+                <li>
+                  <a href="{{ route('admin.flight_customer_users.index') }}" class="nav-link {{ request()->routeIs('admin.flight_customer_users.*') ? 'active' : '' }}">
+                      Flight Customer Users
+                  </a>
+              </li>
+              <li>
+                <a href="{{ route('admin.reports.index') }}" class="nav-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
+                    System Reports
+                </a>
+             </li>
                 <!-- Add more sidebar links here -->
             </ul>
         </nav>
@@ -105,6 +115,8 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('scripts');
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
